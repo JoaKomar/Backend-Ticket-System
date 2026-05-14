@@ -38,4 +38,5 @@ def can_modify(ticket: TicketDB, user: UserDB):
     if user.role == "admin":
         return True
     return ticket.owner_id == user.id
-    
+
+ 

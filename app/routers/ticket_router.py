@@ -27,7 +27,8 @@ async def create_ticket(ticket: TicketUser,
     admin_db = search_admin_ticket(db)
 
     if not admin_db:
-        raise HTTPException(status_code=503, detail="No hay staff para atender el ticket, intente mas tarde")
+        raise HTTPException(status_code=503, detail="There aren't STAFF at the moment, please try again later.")
+    
     
 
     new_ticket = TicketDB(title=ticket.title,
@@ -103,7 +104,7 @@ async def create_comment(id:int,
 async def comment_response(ticket_id: int,comment: Comment, user: UserDB = Depends(current_user), db: Session = Depends(get_db)):
 
     if user.role != "admin":
-        raise HTTPException(status_code=400, detail="bad request")
+        raise HTTPException(status_code=400, detail="Bad request")
     
     ticket_db = db.query(TicketDB).filter(TicketDB.id == ticket_id).first()
 

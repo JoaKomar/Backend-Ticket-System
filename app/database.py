@@ -18,8 +18,6 @@ SessionLocal = sessionmaker(
 Base = declarative_base()
 
 
-
-
 #To KEEP open the Session with DB
 def get_db():
     db = SessionLocal()
